@@ -1,12 +1,11 @@
-
-function infiniteScroll(loadMoreContents){
-	const displayedContentHeight = document.body.offsetHeight
-	const windowHeight = window.innerHeight
-	const scrollHeight = window.scrollY
-	const isScrollReachedEnd = windowHeight + scrollHeight >= displayedContentHeight
-	if(isScrollReachedEnd){
-		loadMoreContents()
-	}
+const infiniteScroll = (callback,target)=>{
+	let observer = new IntersectionObserver( ()=> {
+		callback()
+		observer.observe(target)
+	},{
+		root : null,
+		threshold : 0.2
+	})
+	observer.observe(target)
 }
-
 export default infiniteScroll

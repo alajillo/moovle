@@ -10,9 +10,10 @@
       :alt="item.Title"
       @click="showDetail" />
   </li>
-  <button
+  <button 
+    v-show="!isLoading"
+    ref="loadMore"
     @click="getMoreMovies">
-    get more movies
   </button>
 </template>
 
@@ -20,6 +21,7 @@
 import getMovies from '~/utils/api_list'
 import Detail from './Detail'
 import infiniteScroll from './infiniteScroll'
+
 export default {
 	components : [
 		Detail
@@ -30,10 +32,13 @@ export default {
 		},
 		pageCount(){
 			return this.$store.state.pageCount
+		},
+		isLoading(){
+			return this.$store.state.isLoading
 		}
 	},
-	created(){
-		window.addEventListener('scroll',infiniteScroll.bind(null,this.getMoreMovies))    
+	mounted(){
+		infiniteScroll(this.getMoreMovies,this.$refs.loadMore)   
 	},
 	methods : {
 		async getMoreMovies(){
@@ -51,13 +56,8 @@ export default {
 
 <style lang="scss" scoped>
 	button {
-		border-radius: 4px;
-		background: white;
-		font-size : 2rem;
-		transition: 0.3s ease-in-out;
-   &:hover{
-     transform: scale(1.2);
-   }
+		background: none;
+		border : none;
 	}
  li {
   width : 150px;
