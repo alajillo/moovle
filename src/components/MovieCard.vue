@@ -32,12 +32,8 @@ export default {
 			return this.$store.state.pageCount
 		}
 	},
-	mounted(){
+	created(){
 		window.addEventListener('scroll',infiniteScroll.bind(null,this.getMoreMovies))    
-		setInfiniteScroll({
-			target : this.$refs.card,
-			threshold : 0.5
-		})
 	},
 	methods : {
 		async getMoreMovies(){
