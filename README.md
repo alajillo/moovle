@@ -1,2 +1,2 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8146c73e-708e-4466-9670-3940ada8fda1/deploy-status)](https://app.netlify.com/sites/ecstatic-sammet-e4bb33/deploys)
-[배포 링크](https://ecstatic-sammet-e4bb33.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d96eb97b-6005-4aea-a688-251e9262b640/deploy-status)](https://app.netlify.com/sites/ecstatic-hermann-e8e79f/deploys)
+[배포링크](https://ecstatic-hermann-e8e79f.netlify.app)
