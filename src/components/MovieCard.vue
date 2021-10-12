@@ -2,8 +2,9 @@
   <li
     v-for="item in list"
     :key="item.imdbID">
-    <img
+    <img 
       :id="item.imdbID"
+      ref="card"
       onerror="this.onerror=null;this.src='https://media.vlpt.us/images/alajillo/post/1e14c162-7ef7-466b-abcb-142b1089cf96/null.png';"
       :src="item.Poster"
       :alt="item.Title"
@@ -17,8 +18,8 @@
 
 <script>
 import getMovies from '~/utils/api_list'
-import infiniteScroll from './infiniteScroll'
 import Detail from './Detail'
+import {setInfiniteScroll,removeInfiniteScroll} from '../utils/infiniteScorll'
 export default {
 	components : [
 		Detail
@@ -32,12 +33,16 @@ export default {
 		}
 	},
 	mounted(){
-		window.addEventListener('scroll',infiniteScroll.bind(null,this.getMoreMovies))    
+		// window.addEventListener('scroll',infiniteScroll.bind(null,this.getMoreMovies))    
+		setInfiniteScroll({
+			target : this.$refs.card,
+			threshold : 0.5
+		})
 	},
 	methods : {
 		async getMoreMovies(){
 			const {keyword} = this.$route.params
-			const moreList = await getMovies(keyword,++this.pageCount)
+			const moreList = await getMovies(keyword,this.pageCount)
 			this.$store.dispatch('loadMoreMovieList',moreList)
 		},
 		showDetail(e){

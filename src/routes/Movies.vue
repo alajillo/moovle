@@ -1,5 +1,7 @@
 <template>
-  <ul v-if="isResponseSuccess">
+  <ul
+    v-if="isResponseSuccess"
+    ref="movieListElement">
     <MovieCard />
   </ul>
   <p v-else>
@@ -9,6 +11,7 @@
 
 <script>
 import MovieCard from '~/components/MovieCard'
+
 export default{
 	components : {
 		MovieCard
