@@ -19,7 +19,7 @@
 <script>
 import getMovies from '~/utils/api_list'
 import Detail from './Detail'
-import {setInfiniteScroll,removeInfiniteScroll} from '../utils/infiniteScorll'
+import infiniteScroll from './infiniteScroll'
 export default {
 	components : [
 		Detail
@@ -33,7 +33,7 @@ export default {
 		}
 	},
 	mounted(){
-		// window.addEventListener('scroll',infiniteScroll.bind(null,this.getMoreMovies))    
+		window.addEventListener('scroll',infiniteScroll.bind(null,this.getMoreMovies))    
 		setInfiniteScroll({
 			target : this.$refs.card,
 			threshold : 0.5
